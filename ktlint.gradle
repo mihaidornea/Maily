@@ -1,0 +1,23 @@
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint 'com.pinterest:ktlint:0.45.2'
+}
+
+tasks.register('ktlint', JavaExec) {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    jvmArgs "--add-opens=java.base/java.lang=ALL-UNNAMED"
+    main = "com.pinterest.ktlint.Main"
+    args "src/main/**/*.kt"
+}
+
+tasks.register('ktlintFormat', JavaExec) {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    jvmArgs "--add-opens=java.base/java.lang=ALL-UNNAMED"
+    main = "com.pinterest.ktlint.Main"
+    args "-F", "src/main/**/*.kt"
+}

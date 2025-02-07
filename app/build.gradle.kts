@@ -1,19 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.mihaidornea.maily"
-    compileSdk = 35
+    compileSdk = CommonVersions.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.mihaidornea.maily"
-        minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = CommonVersions.MIN_SDK
+        targetSdk = CommonVersions.TARGET_SDK
+        versionCode = CommonVersions.VERSION_CODE
+        versionName = CommonVersions.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,32 +30,34 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
+
+    composeOptions.kotlinCompilerExtensionVersion = CommonVersions.COMPOSE_COMPILER
+
     buildFeatures {
         compose = true
     }
 }
 
 dependencies {
+    implementation("${AppLibs.ANDROIDX_CORE}:${AppLibsVersions.ANDROIDX_CORE}")
+    implementation("${AppLibs.ANDROIDX_COMPOSE_UI}:${CommonVersions.COMPOSE}")
+    implementation("${AppLibs.ANDROIDX_COMPOSE_MATERIAL3}:${AppLibsVersions.COMPOSE_MATERIAL3}")
+    implementation("${AppLibs.ANDROIDX_LIFECYCLE}:${AppLibsVersions.ANDROIDX_LIFECYCLE}")
+    implementation("${AppLibs.ANDROIDX_ACTIVITY_COMPOSE}:${AppLibsVersions.ANDROIDX_ACTIVITY_COMPOSE}")
+    implementation("${AppLibs.ANDROIDX_NAVIGATION_COMPOSE}:${AppLibsVersions.ANDROIDX_NAVIGATION_COMPOSE}")
+    implementation("${CommonLibs.HILT_ANDROID}:${CommonVersions.HILT}")
+    kapt("${CommonLibs.HILT_COMPILER}:${CommonVersions.HILT}")
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation("${CommonLibs.Test.JUNIT}:${CommonVersions.Test.JUNIT}")
+    androidTestImplementation("${AppLibs.Test.ANDROIDX_TEST_JUNIT}:${AppLibsVersions.Test.ANDROIDX_TEST_JUNIT}")
+    androidTestImplementation("${AppLibs.Test.ANDROIDX_TEST_ESPRESSO}:${AppLibsVersions.Test.ANDROIDX_TEST_ESPRESSO}")
+
+    implementation("${AppLibs.Debug.ANDROIDX_COMPOSE_UI_TOOLING}:${CommonVersions.COMPOSE}")
+    implementation("${AppLibs.Debug.ANDROIDX_COMPOSE_UI_TOOLING_PREVIEW}:${CommonVersions.COMPOSE}")
 }
