@@ -29,7 +29,7 @@ allprojects {
 
     detekt {
         toolVersion = CommonVersions.DETEKT
-        config.setFrom(file("config/detekt/detekt.yml"))
+        config.setFrom(file("../default-detekt-config.yml"))
         buildUponDefaultConfig = true
     }
 }

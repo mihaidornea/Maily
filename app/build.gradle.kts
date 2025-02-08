@@ -45,6 +45,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     implementation("${AppLibs.ANDROIDX_CORE}:${AppLibsVersions.ANDROIDX_CORE}")
     implementation("${AppLibs.ANDROIDX_COMPOSE_UI}:${CommonVersions.COMPOSE}")
     implementation("${AppLibs.ANDROIDX_COMPOSE_MATERIAL3}:${AppLibsVersions.COMPOSE_MATERIAL3}")
