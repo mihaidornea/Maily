@@ -55,6 +55,7 @@ dependencies {
     implementation("${AppLibs.ANDROIDX_ACTIVITY_COMPOSE}:${AppLibsVersions.ANDROIDX_ACTIVITY_COMPOSE}")
     implementation("${AppLibs.ANDROIDX_NAVIGATION_COMPOSE}:${AppLibsVersions.ANDROIDX_NAVIGATION_COMPOSE}")
     implementation("${CommonLibs.HILT_ANDROID}:${CommonVersions.HILT}")
+    implementation("${CommonLibs.HILT_NAVIGATION}:${CommonVersions.HILT_NAVIGATION}")
     kapt("${CommonLibs.HILT_COMPILER}:${CommonVersions.HILT}")
 
     testImplementation("${CommonLibs.Test.JUNIT}:${CommonVersions.Test.JUNIT}")

@@ -1,4 +1,4 @@
-package com.mihaidornea.maily.ui.theme
+package com.mihaidornea.maily.shared.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

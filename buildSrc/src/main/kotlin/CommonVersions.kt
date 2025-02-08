@@ -14,6 +14,7 @@ object CommonVersions {
 
     const val DETEKT = "1.23.7"
     const val HILT = "2.51"
+    const val HILT_NAVIGATION = "1.2.0"
     const val GSON = "2.10.1"
 
     const val JAVAX_INJECT = "1"

@@ -1,4 +1,4 @@
-package com.mihaidornea.maily.ui.theme
+package com.mihaidornea.maily.shared.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
