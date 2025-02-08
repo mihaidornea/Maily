@@ -3,4 +3,5 @@
 
     <string name="users_title">Users</string>
     <string name="user_age_and_location">%1$d years from %2$s</string>
+    <string name="error_message">Something went wrong. Please try again.</string>
 </resources>

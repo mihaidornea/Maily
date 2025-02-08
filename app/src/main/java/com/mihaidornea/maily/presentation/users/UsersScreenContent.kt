@@ -1,12 +1,16 @@
 package com.mihaidornea.maily.presentation.users
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mihaidornea.maily.presentation.users.model.UserUiModel
@@ -16,31 +20,40 @@ import com.mihaidornea.maily.presentation.users.ui.UserRow
 import com.mihaidornea.maily.shared.theme.MailyColorPalette
 import com.mihaidornea.maily.shared.theme.MailyTheme
 
+private const val PAGINATION_TRIGGER_DELTA = 3
+
 @Composable
 fun UsersScreenContent(
-    uiState: UsersScreenUiState
+    uiState: UsersScreenUiState,
+    onLoadMoreItems: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        containerColor = MailyColorPalette.DarkRed,
-        modifier = Modifier
+    val lazyListState = rememberLazyListState()
+
+    val lastVisibleItemIndex by remember {
+        derivedStateOf {
+            lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+        }
+    }
+
+    LaunchedEffect(lastVisibleItemIndex) {
+        lastVisibleItemIndex?.let { index ->
+            if (index >= lazyListState.layoutInfo.totalItemsCount - PAGINATION_TRIGGER_DELTA)
+                onLoadMoreItems()
+        }
+    }
+
+    LazyColumn(
+        state = lazyListState,
+        modifier = modifier
             .fillMaxSize()
-            .navigationBarsPadding()
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .background(MailyColorPalette.OffWhite)
-        ) {
+            .background(MailyColorPalette.OffWhite)
+    ) {
+        items(items = uiState.users) { userUiModel ->
             UserRow(
-                userUiModel = UserUiModel(
-                    name = "Mihai Dornea",
-                    age = 28,
-                    nationality = "RO",
-                    registeredTime = "16:32",
-                    pictureUrl = TEST_PICTURE_URL
-                )
+                userUiModel = userUiModel
             )
+            HorizontalDivider(color = MailyColorPalette.LightGray)
         }
     }
 }
@@ -51,8 +64,17 @@ private fun UsersScreenPreview() {
     MailyTheme {
         UsersScreenContent(
             uiState = UsersScreenUiState(
-                users = listOf()
-            )
+                users = listOf(
+                    UserUiModel(
+                        name = "Mihai Dornea",
+                        age = 28,
+                        nationality = "RO",
+                        registeredTime = "16:32",
+                        pictureUrl = TEST_PICTURE_URL
+                    )
+                )
+            ),
+            onLoadMoreItems = {}
         )
     }
 }

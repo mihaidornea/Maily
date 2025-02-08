@@ -1,4 +1,3 @@
-@file:Suppress("ktlint:standard:filename")
 package com.mihaidornea.maily.shared.theme
 
 import androidx.compose.ui.graphics.Color
