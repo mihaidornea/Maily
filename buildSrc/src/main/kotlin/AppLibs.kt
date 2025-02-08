@@ -6,6 +6,8 @@ object AppLibs {
     const val ANDROIDX_ACTIVITY_COMPOSE = "androidx.activity:activity-compose"
     const val ANDROIDX_NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose"
 
+    const val COIL = "io.coil-kt:coil-compose"
+
     object Test {
         const val ANDROIDX_TEST_JUNIT = "androidx.test.ext:junit"
         const val ANDROIDX_TEST_ESPRESSO = "androidx.test.espresso:espresso-core"
@@ -23,6 +25,7 @@ object AppLibsVersions {
     const val ANDROIDX_LIFECYCLE = "2.8.7"
     const val ANDROIDX_ACTIVITY_COMPOSE = "1.10.0"
     const val ANDROIDX_NAVIGATION_COMPOSE = "2.8.6"
+    const val COIL = "2.4.0"
 
     object Test {
         const val ANDROIDX_TEST_JUNIT = "1.2.1"

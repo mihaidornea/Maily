@@ -58,6 +58,9 @@ dependencies {
     implementation("${CommonLibs.HILT_NAVIGATION}:${CommonVersions.HILT_NAVIGATION}")
     kapt("${CommonLibs.HILT_COMPILER}:${CommonVersions.HILT}")
 
+    // Image Loading - Coil
+    implementation("${AppLibs.COIL}:${AppLibsVersions.COIL}")
+
     testImplementation("${CommonLibs.Test.JUNIT}:${CommonVersions.Test.JUNIT}")
     androidTestImplementation("${AppLibs.Test.ANDROIDX_TEST_JUNIT}:${AppLibsVersions.Test.ANDROIDX_TEST_JUNIT}")
     androidTestImplementation("${AppLibs.Test.ANDROIDX_TEST_ESPRESSO}:${AppLibsVersions.Test.ANDROIDX_TEST_ESPRESSO}")
