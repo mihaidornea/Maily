@@ -46,7 +46,6 @@ class UsersViewModel @Inject constructor(
         onNextKey = { _currentPageNumber.value + 1 },
         onError = ::onError,
         onSuccess = { users, key ->
-            onError()
             _uiState.update { currentState ->
                 currentState.copy(
                     users = currentState.users + users.map { userUiMapper.mapUserToUserUiModel(it) }
@@ -54,8 +53,12 @@ class UsersViewModel @Inject constructor(
             }
             _currentPageNumber.update { key }
         },
-        onReset = { _currentPageNumber.update { DEFAULT_PAGE } }
+        onReset = { _currentPageNumber.update { DEFAULT_PAGE } },
+        isLoading = { isLoading -> _isLoading.update { isLoading } }
     )
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
 
     fun loadNextUsers(hasToReset: Boolean = false) {
         if (_currentPageNumber.value > MAX_PAGES)

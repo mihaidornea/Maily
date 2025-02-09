@@ -10,7 +10,7 @@ object MailyTypography {
     val H1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 32.sp,
+        fontSize = 24.sp,
         lineHeight = 24.sp,
     )
 

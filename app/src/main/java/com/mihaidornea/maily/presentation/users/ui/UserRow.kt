@@ -30,13 +30,6 @@ import com.mihaidornea.maily.shared.theme.Radius
 import com.mihaidornea.maily.shared.theme.Size
 import com.mihaidornea.maily.shared.theme.Space
 
-const val TEST_PICTURE_URL =
-    "https://scontent.fotp3-2.fna.fbcdn.net/v/t39.30808-1/224570164_4160641867363552_386189127362" +
-        "4238752_n.jpg?stp=c583.0.1364.1364a_dst-jpg_s200x200_tt6&_nc_cat=106&ccb=1-7&_nc_sid" +
-        "=e99d92&_nc_ohc=_kHMdQoALdMQ7kNvgGbuwRD&_nc_oc=AdglrzTjogWOX4GIFa5Pq_7vqX6OSEPHRTq_S" +
-        "vlqb2k-pK6b8TAGC573vWAP4ZKTjwo&_nc_zt=24&_nc_ht=scontent.fotp3-2.fna&_nc_gid=ALnEFX5" +
-        "mSwpD5BoTPBu2lHP&oh=00_AYBjd35mZy1yzKNt9SJ4576TQxIoVePlr-aBsEfNscQ21Q&oe=67AD7A6B"
-
 @Composable
 fun UserRow(
     userUiModel: UserUiModel,
@@ -117,7 +110,7 @@ private fun UserRowPreview() {
             age = 28,
             nationality = "RO",
             registeredTime = "16:32",
-            pictureUrl = TEST_PICTURE_URL
+            pictureUrl = ""
         )
     )
 }

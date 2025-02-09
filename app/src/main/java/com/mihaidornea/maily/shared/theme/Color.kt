@@ -7,6 +7,7 @@ object MailyColorPalette {
     val OffWhite = Color(0xFFF9F9F9)
     val Black = Color(0xFF000000)
     val Red = Color(0xFFC94038)
+    val LightRed = Color(0xFFFD968E)
     val DarkRed = Color(0xFFB83227)
 
     val DarkGray = Color(0xFF747474)

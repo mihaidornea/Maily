@@ -10,7 +10,8 @@ class Paginator<Key, Item>(
     private val onNextKey: suspend () -> Key,
     private val onError: suspend () -> Unit,
     private val onSuccess: suspend (items: List<Item>, key: Key) -> Unit,
-    private val onReset: suspend () -> Unit
+    private val onReset: suspend () -> Unit,
+    private val isLoading: suspend (isLoading: Boolean) -> Unit
 ) {
 
     private var currentKey = initialKey
@@ -24,6 +25,7 @@ class Paginator<Key, Item>(
             return null
         }
         issMakingRequest = true
+        isLoading(true)
         if (hasToReset) {
             currentKey = resetKey
             onReset()
@@ -31,6 +33,7 @@ class Paginator<Key, Item>(
 
         return onRequest(currentKey).also { result ->
             issMakingRequest = false
+            isLoading(false)
             when (result) {
                 is Failure -> {
                     onError()
