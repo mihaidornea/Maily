@@ -29,6 +29,7 @@ import com.mihaidornea.maily.shared.theme.MailyTypography
 import com.mihaidornea.maily.shared.theme.Radius
 import com.mihaidornea.maily.shared.theme.Size
 import com.mihaidornea.maily.shared.theme.Space
+import kotlin.random.Random
 
 @Composable
 fun UserRow(
@@ -77,11 +78,13 @@ fun UserRow(
                     horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.ic_attachement),
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(Color.LightGray)
-                    )
+                    if (Random.nextBoolean()) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_attachement),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(Color.LightGray)
+                        )
+                    }
                     Text(
                         text = userUiModel.registeredTime,
                         style = MailyTypography.LabelSmall,
